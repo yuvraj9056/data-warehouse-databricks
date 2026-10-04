@@ -6,7 +6,7 @@ An end-to-end, production-grade ETL/ELT pipeline built on **Databricks**, **Delt
 
 ## Architecture Overview
 
-
+```text
 [ Raw CSV Files ]
        │
        ▼
@@ -23,7 +23,7 @@ An end-to-end, production-grade ETL/ELT pipeline built on **Databricks**, **Delt
 ┌──────────────┐
 │  Gold Layer  │  Star Schema (Fact & Dimension views, deterministic MD5 surrogate keys) 
 └──────────────┘
-
+```
 <img width="935" height="621" alt="image" src="https://github.com/user-attachments/assets/91e35e95-82c3-4b88-b273-aa8e5cd5f723" />
 
 ## Pipeline Layers & Technical Implementation
@@ -54,7 +54,7 @@ An end-to-end, production-grade ETL/ELT pipeline built on **Databricks**, **Delt
 
 ## Project Structure
 
-
+```text
 medallion-customer360-lakehouse/
 │
 ├── .gitignore                          # Git ignore rules for Databricks/Python artifacts
@@ -86,7 +86,7 @@ medallion-customer360-lakehouse/
     └── gold/                           # Analytics & Star Schema views
         ├── .gitkeep
         └── load_gold.sql               # Star Schema dimension & fact view definitions
-
+```
 ## Databricks Workflow DAG
 
 The pipeline is orchestrated using a multi-task **Databricks Workflow Job**:
