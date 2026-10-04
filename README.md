@@ -6,7 +6,7 @@ An end-to-end, production-grade ETL/ELT pipeline built on **Databricks**, **Delt
 
 ## Architecture Overview
 
-```text
+
 [ Raw CSV Files ]
        │
        ▼
@@ -21,8 +21,10 @@ An end-to-end, production-grade ETL/ELT pipeline built on **Databricks**, **Delt
        │
        ▼
 ┌──────────────┐
-│  Gold Layer  │  Star Schema (Fact & Dimension views, deterministic MD5 surrogate keys)
+│  Gold Layer  │  Star Schema (Fact & Dimension views, deterministic MD5 surrogate keys) 
 └──────────────┘
+
+<img width="935" height="621" alt="image" src="https://github.com/user-attachments/assets/91e35e95-82c3-4b88-b273-aa8e5cd5f723" />
 
 ## Pipeline Layers & Technical Implementation
 
@@ -52,7 +54,7 @@ An end-to-end, production-grade ETL/ELT pipeline built on **Databricks**, **Delt
 
 ## Project Structure
 
-```text
+
 medallion-customer360-lakehouse/
 │
 ├── .gitignore                          # Git ignore rules for Databricks/Python artifacts
@@ -92,6 +94,8 @@ The pipeline is orchestrated using a multi-task **Databricks Workflow Job**:
 1. **`CSV_to_Bronze`**: Ingests raw CRM & ERP source files into Delta Bronze tables.
 2. **`Bronze_to_Silver`**: Runs cleansing, normalization, and SCD Type 2 `MERGE` updates.
 3. **`Silver_to_Gold`**: Re-computes Gold dimensional views and fact joins.
+
+<img width="847" height="110" alt="image" src="https://github.com/user-attachments/assets/e0bf4cd3-54aa-4d98-83b7-c1d3bd9f99b8" />
 
 ---
 
