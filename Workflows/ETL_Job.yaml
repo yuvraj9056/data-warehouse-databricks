@@ -1,0 +1,45 @@
+resources:
+  jobs:
+    Customer360_ETL_Job:
+      name: Customer360_ETL_Job
+      tasks:
+        - task_key: CSV_to_Bronze
+          notebook_task:
+            notebook_path: /Workspace/Users/ranayuvrajsingh1111@gmail.com/customer_360_notebooks/load_bronze
+            source: WORKSPACE
+          email_notifications:
+            on_start:
+              - ranayuvrajsingh1111@gmail.com
+            on_success:
+              - ranayuvrajsingh1111@gmail.com
+            on_failure:
+              - ranayuvrajsingh1111@gmail.com
+        - task_key: Bronze_to_Silver
+          depends_on:
+            - task_key: CSV_to_Bronze
+          notebook_task:
+            notebook_path: /Workspace/Users/ranayuvrajsingh1111@gmail.com/customer_360_notebooks/load_silver
+            source: WORKSPACE
+          email_notifications:
+            on_start:
+              - ranayuvrajsingh1111@gmail.com
+            on_success:
+              - ranayuvrajsingh1111@gmail.com
+            on_failure:
+              - ranayuvrajsingh1111@gmail.com
+        - task_key: Silver_to_Gold
+          depends_on:
+            - task_key: Bronze_to_Silver
+          notebook_task:
+            notebook_path: /Workspace/Users/ranayuvrajsingh1111@gmail.com/customer_360_notebooks/load_gold
+            source: WORKSPACE
+          email_notifications:
+            on_start:
+              - ranayuvrajsingh1111@gmail.com
+            on_success:
+              - ranayuvrajsingh1111@gmail.com
+            on_failure:
+              - ranayuvrajsingh1111@gmail.com
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
